@@ -18,6 +18,8 @@ def index(request):
     return render(request, 'rango/index.html', context_dict)
 
 def about(request):
+    print(request.method)
+    print(request.method)
     return render(request, 'rango/about.html',)
 
 def show_category(request, category_name_slug):
@@ -42,8 +44,6 @@ def add_category(request):
             
             if form.is_valid():
                 form.save(commit=True)
-                print(cat, cat.slug)
-
                 return index(request)
             else:
                 print(form.errors)
