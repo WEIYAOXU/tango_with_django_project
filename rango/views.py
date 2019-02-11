@@ -160,7 +160,7 @@ def visitor_cookie_handler(request):
     last_visit_cookie = get_server_side_cookie(request, 'last_visit', str(datetime.now()))
     last_visit_time = datetime.strptime(last_visit_cookie[:-7], '%Y-%m-%d %H:%M:%S')
     
-    if (datetime.now() - last_visit_time).days > 0:
+    if (datetime.now() - last_visit_time).seconds > 0:
         visits = visits + 1
         request.session['last_visit'] = str(datetime.now())
     else:
