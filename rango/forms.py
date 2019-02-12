@@ -20,7 +20,10 @@ class PageForm(forms.ModelForm):
                             help_text="Please enter the URL of the page.")
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 
-
+    class Meta:
+        model = Page
+        exclude = ('category',)
+        
     def clean(self):
             cleaned_data = self.cleaned_data
             url = cleaned_data.get('url')
@@ -32,9 +35,7 @@ class PageForm(forms.ModelForm):
             return cleaned_data
 
 
-    class Meta:
-        model = Page
-        exclude = ('category',)
+    
 
 class UserForm(forms.ModelForm):
         password = forms.CharField(widget=forms.PasswordInput())
