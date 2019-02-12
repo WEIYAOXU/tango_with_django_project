@@ -1,15 +1,13 @@
 {% extends 'rango/base.html' %}
 {% load staticfiles %}
-
 {% block title_block %}
-    {{ Category.name }}
+    {{ category.name }}
 {% endblock %}
-
 {% block body_block %}
     {% if category %}
         <h1>{{ category.name }}</h1>
         {% if pages %}
-           <ul>
+            <ul>
             {% for page in pages %}
                 <li><a href="{{ page.url }}">{{ page.title }}</a></li>
             {% endfor %}
@@ -17,8 +15,8 @@
         {% else %}
             <strong>No pages currently in category.</strong>
         {% endif %}
-            {% if user.is_authenticated %}
-                <li><a href="{% url 'add_page' category.slug %}">Add a Page</a></li>
+        {% if user.is_authenticated %}
+        <a href="{% url 'add_page' category.slug %}">Add a Page</a>
         {% endif %}
     {% else %}
         The specified category does not exist!
