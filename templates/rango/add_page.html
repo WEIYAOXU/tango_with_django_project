@@ -1,12 +1,9 @@
-{% extends 'rango/base.html' %}
-{% load staticfiles %}
-
-{% block title_block %}
-    Add Page 
-{% endblock %}
-
-{% block body_block %}
-    {% if category %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Page</title>
+    </head>
+    <body>
         <h1>Add a Page to {{ category.name }}</h1>
         <div>
             <form id="page_form" method="post" action="/rango/add_category{{ category.slug }}/add_page/">
@@ -19,10 +16,8 @@
                     {{ field.help_text }}
                     {{ field }}
                 {% endfor %}
-                <input type="submit" name="submit" value="Add Page" />
+                <input type="submit" name="submit" value="Create Page" />
             </form>
-                {% else %}
-                    The category does not exit!
-                {% endif %}
         </div>
-{% endblock %}
+    </body>
+</html>

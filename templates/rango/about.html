@@ -2,19 +2,14 @@
 {% load staticfiles %}
 
 {% block title_block %}
-     Rango says here is the about page
+    Rango says here is the about page
 {% endblock %}
 
 {% block body_block %}
-    <h1> Rango says here is the about page</h1>
-    <p>visits: {{ visits }}</p>
-            
+    <h1>Rango says here is the about page</h1>
+    <p>visits: {{ visits }}</p> 
             <div>
-                This tutorial has been put together by WEIYAO XU <br />
-                <strong>{{ boldmessage }}</strong><br />
-            </div>
-            <div>
-                <a href = "/rango/"> Index Page </a> <br />
+                <a href = "{% url 'index' %}">Index</a> 
                 <img src="{{ MEDIA_URL}}cat.jpg" alt="Picture of a cat" />
             </div>
 {% endblock %}

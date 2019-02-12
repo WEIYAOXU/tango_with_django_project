@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from rango.models import Category
 from rango.models import Page
 from rango.forms import CategoryForm
@@ -18,7 +17,7 @@ def index(request):
 
    # context_dict = {'boldmessage': "Crunchy, creamy, cookie, candy, cupcake!"}
     # return render(request, 'rango/index.html', context=context_dict)
-
+    
     category_list = Category.objects.order_by('-likes')[:5]
     page_list = Page.objects.order_by('-views')[:5]
     context_dict = {'categories': category_list,'pages': page_list}
@@ -30,7 +29,7 @@ def index(request):
     return response
 
 def about(request):
-    context_dict = {'blodmessage': "Hey!"}
+    context_dict = {}
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']
     response = render(request, 'rango/about.html', context_dict)
@@ -140,6 +139,12 @@ def user_login(request):
     else:
         return render(request, 'rango/login.html', {})
 
+def some_view(request):
+    if not request.user.is_authenticated():
+        return HttpResponse("You are logged in.")
+    else:
+        return HttpResponse("You are not logged in")
+        
 @login_required
 def restricted(request):
     return HttpResponse("Since you're logged in, you can see this text!")
